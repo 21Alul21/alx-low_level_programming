@@ -1,19 +1,12 @@
-#include "holberton.h"
+#include <unistd.h>
+
 /**
- * main - Entry point
+ *_putchar writes the caracter
+ *c to std output
  *
- * Return: Always 0 (Success)
+ *
  */
-int main(void)
 {
-char *sh = "Holberton";
-
-while (*sh)
-{
-_putchar(*sh);
-sh++;
-}
-_putchar('\n');
-
-return (0);
-}
+int _putchar(char c)
+  return (write 1, &c, 1);)
+  } 
