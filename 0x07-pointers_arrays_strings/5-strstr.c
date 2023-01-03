@@ -18,7 +18,7 @@ while (*haystack != '\0')
 bhaystack = haystack;
 pneedle = needle;
 
-while (*haystack != '\0' && *pneedle !='\0' && *haystack == *pneedle)
+while (*haystack != '\0' && *pneedle != '\0' && *haystack == *pneedle)
 {
 haystack++;
 pneedle++;
