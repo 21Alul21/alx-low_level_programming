@@ -1,42 +1,31 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "hash_tables.h"
 
-typedef struct hash_node {
-    char* key;
-    char* value;
-    struct hash_node* next;
-} hash_node_t;
+/**
+ *
+ * this is the creation of the 
+ * tables 
+ *
+ *
+ */
+hash_table_t *hash_table_create(unsigned long int size)
+{
+	hash_table_t *table;
+	hash_node_t **array;
+	unsigned long int i;
 
-typedef struct {
-    unsigned long int size;
-    hash_node_t** array;
-} hash_table_t;
+	table = malloc(sizeof(hash_table_t));
+	if (table == NULL)
+		return (NULL);
 
-hash_table_t* hash_table_create(unsigned long int size) {
-    hash_table_t* hash_table = (hash_table_t*)malloc(sizeof(hash_table_t));
-    if (hash_table == NULL) {
-        return NULL;
-    }
+	array = malloc(sizeof(hash_node_t *) * size);
+	if (array == NULL)
+		return (NULL);
 
-    hash_table->size = size;
-    hash_table->array = (hash_node_t**)calloc(size, sizeof(hash_node_t*));
-    if (hash_table->array == NULL) {
-        free(hash_table);
-        return NULL;
-    }
+	for (i = 0; i < size; i++)
+		array[i] = NULL;
 
-    return hash_table;
+	table->array = array;
+	table->size = size;
+
+	return (table);
 }
-
-int main() {
-    hash_table_t* hash_table = hash_table_create(10);
-    if (hash_table == NULL) {
-        printf("Failed to create hash table\n");
-        return 1;
-    }
-
-    printf("Hash table created with size %lu\n", hash_table->size);
-
-    return 0;
-}
-
